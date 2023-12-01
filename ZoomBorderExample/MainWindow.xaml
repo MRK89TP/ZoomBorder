@@ -1,0 +1,96 @@
+﻿<Window x:Class="ZoomBorderExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZoomBorderExample"
+        xmlns:zoomborder="clr-namespace:ZoomBorder;assembly=ZoomBorder"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="700"
+        Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button Content="Uniform"
+                    Width="50"
+                    Height="50"
+                    Click="Button_Click" />
+
+            <Button Content="Bounding"
+                    Width="50"
+                    Height="50"
+                    Click="BuoundingButton_Click" />
+
+            <Button Content="Reset"
+                    Width="50"
+                    Height="50"
+                    Click="ResetButton_Click" />
+
+            <ToggleButton x:Name="EnableButton"
+                          Content="Enable Z"
+                          Width="50"
+                          Height="50"/>
+
+        </StackPanel>
+
+        <zoomborder:ZoomBorder x:Name="ZoomBorder"
+                               Grid.Row="1"
+                               ClipToBounds="True"
+                               IsZoomEnabled="{Binding ElementName=EnableButton ,Path=IsChecked}">
+
+            <Canvas Width="1000"
+                    Height="500"
+                    Background="LightGreen">
+                <Canvas.LayoutTransform>
+                    <ScaleTransform ScaleX="1"
+                                    ScaleY="-1" />
+                </Canvas.LayoutTransform>
+                <Polygon x:Name="P1"
+                         Canvas.Top="50"
+                         Canvas.Left="50"
+                         Fill="Red">
+                    <Polygon.Points>
+                        <Point X="0"
+                               Y="0" />
+
+                        <Point X="50"
+                               Y="0" />
+
+                        <Point X="50"
+                               Y="50" />
+
+                        <Point X="0"
+                               Y="50" />
+                    </Polygon.Points>
+                </Polygon>
+
+                <Polygon x:Name="P2"
+                         Fill="Red"
+                         Canvas.Top="100"
+                         Canvas.Left="100">
+                    <Polygon.Points>
+                        <Point X="0"
+                               Y="0" />
+
+                        <Point X="50"
+                               Y="0" />
+
+                        <Point X="50"
+                               Y="50" />
+
+                        <Point X="0"
+                               Y="50" />
+                    </Polygon.Points>
+                </Polygon>
+
+            </Canvas>
+        </zoomborder:ZoomBorder>
+
+    </Grid>
+</Window>
